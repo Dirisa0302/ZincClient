@@ -1,0 +1,27 @@
+name: Build Cloudburst Protocol
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Make Gradle Wrapper executable
+        working-directory: CloudburstProtocol/Protocol-3.0
+        run: chmod +x gradlew
+
+      - name: Build Cloudburst Protocol
+        working-directory: CloudburstProtocol/Protocol-3.0
+        run: ./gradlew build
