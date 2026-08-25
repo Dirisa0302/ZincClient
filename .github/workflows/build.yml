@@ -1,4 +1,4 @@
-name: Build Cloudburst Protocol
+name: Build ZincClient
 
 on:
   push:
@@ -18,10 +18,20 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Make Gradle Wrapper executable
-        working-directory: CloudburstProtocol/Protocol-3.0
+      # Build CloudBurst Protocol
+      - name: Make CloudBurst Gradle Wrapper executable
+        working-directory: CloudBurstProtocol/Protocol-3.0
         run: chmod +x gradlew
 
-      - name: Build Cloudburst Protocol
-        working-directory: CloudburstProtocol/Protocol-3.0
+      - name: Build CloudBurst Protocol
+        working-directory: CloudBurstProtocol/Protocol-3.0
+        run: ./gradlew build
+
+      # Build ZincClientCore
+      - name: Make ZincClientCore Gradle Wrapper executable
+        working-directory: ZincClientCore
+        run: chmod +x gradlew
+
+      - name: Build ZincClientCore
+        working-directory: ZincClientCore
         run: ./gradlew build
