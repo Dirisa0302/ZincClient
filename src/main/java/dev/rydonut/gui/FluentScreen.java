@@ -18,7 +18,7 @@ import org.lwjgl.glfw.GLFW;
 import dev.rydonut.config.ConfigManager;
 import dev.rydonut.core.Category;
 import dev.rydonut.core.Module;
-import dev.rydonut.core.ModuleManager; // TODO: sua cho dung class quan ly module cua ban
+import dev.rydonut.core.ModuleManager; // 
 import dev.rydonut.settings.DoubleSetting;
 import dev.rydonut.settings.EnumSetting;
 import dev.rydonut.settings.KeybindSetting;
@@ -51,7 +51,7 @@ public class FluentScreen extends Screen {
     private static final int GAP = 4;
     private static final int TAB_H = 22;
 
-    // palette (ARGB)
+
     private static final int BG = 0xF0161618;
     private static final int SIDEBAR = 0xF01B1B1F;
     private static final int OUTLINE = 0xFF34343A;
@@ -64,7 +64,7 @@ public class FluentScreen extends Screen {
     private static final int OFF_TRACK = 0xFF3A3A41;
     private static final int SUCCESS = 0xFF5CD68A;
 
-    /** 0..1, static de mo lai khong bi giat. */
+
     private static float openAnim;
     private static final List<Toast> TOASTS = new ArrayList<>();
 
@@ -143,15 +143,9 @@ public class FluentScreen extends Screen {
         settings.button("HUD Editor", () -> Minecraft.getInstance().setScreen(new HudEditorScreen()));
     }
 
-    /** TODO: thay bang cach ban lay module theo category (giong Panel cu). */
+    /** Lay module theo category tu ModuleManager. */
     private static List<Module> modulesOf(Category category) {
-        List<Module> out = new ArrayList<>();
-        for (Module m : ModuleManager.getModules()) {
-            if (m.getCategory() == category) {
-                out.add(m);
-            }
-        }
-        return out;
+        return ModuleManager.get().getModulesIn(category);
     }
 
     /** First free "profile_N" name based on the files in the profiles dir. */
